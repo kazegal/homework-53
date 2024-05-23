@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from 'react';
+import './App.css';
+import AddTaskForm from "./AddTaskForm/AddTaskForm";
+import Task from "./Task/Task";
+import {nanoid} from "nanoid";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App = () => {
+    interface ICheckbox {
+        checked: boolean;
+        id: string;
+        text: string;
+    }
+    const [tasks, setTasks] = useState<ICheckbox []>([
+        {text: 'Сделать домашнее задание', checked: false, id: '123'},
+        {text: 'Съездить на работу', checked: false, id: '12323'},
+        {text: 'Купить домой продукты', checked: false, id: '442421'},
+    ]);
 
-export default App
+    const [currentTask, setCurrentTask] = useState('');
+    const changeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCurrentTask(event.target.value);
+    };
+
+    const addTask = (event: React.MouseEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const newTask = {
+            id: nanoid(),
+            text: currentTask,
+            checked: false
+        };
+        setTasks([...tasks, newTask]);
+    };
+
+    const removeTask = (id: string) => {
+        const taskCopy = [...tasks];
+        const index = tasks.findIndex(task => task.id === id);
+        taskCopy.splice(index, 1);
+        setTasks(taskCopy);
+    };
+
+    const changeCheckbox = (id: string) => {
+        const taskCopy = [...tasks];
+        const index = taskCopy.findIndex(task => task.id === id);
+        taskCopy[index].checked = !taskCopy[index].checked;
+        setTasks(taskCopy);
+    };
+
+    return (
+        <div className="App">
+            <div className='todo-wrap'>
+                <h2>To Do List:</h2>
+                <AddTaskForm onAddTask={event => addTask(event)}
+                             onChangeText={event => changeText(event)}
+                />
+                {tasks.map((task) => (
+                    <Task text={task.text}
+                          onRemoveTask={() => removeTask(task.id)}
+                          key={task.id}
+                          checked={task.checked}
+                          onChange={() => changeCheckbox(task.id)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default App;
