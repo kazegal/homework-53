@@ -1,42 +1,100 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+    text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.form {
+    margin: 50px auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-message {
+    width: 300px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: none;
+    outline: 2px solid lightgray;
+    padding: 5px 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input-message:focus {
+    box-shadow: lightgreen 0 0 3px 2px;
+    outline: 2px solid lightgreen;
 }
 
-.card {
-  padding: 2em;
+.del-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url("../images/delete.png") no-repeat;
+    background-size: cover;
+    cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+.side-wrap {
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    margin-right: 20px;
+}
+
+.task-wrap {
+    background: #adb1b8;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.task-wrap:hover {
+    border: 1px solid lightgreen;
+}
+
+.todo-wrap {
+    background: antiquewhite;
+    border: #0f1111 solid 2px;
+    max-width: 800px;
+    margin: 40px auto;
+    border-radius: 5px;
+}
+
+.send-btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 20px #eee;
+    border: none;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #003CC5 0%, #0B63F6 51%, #003CC5 100%);
+}
+
+/*.send-btn:active {*/
+/*    border-bottom-color: #a2a6ac;*/
+/*}*/
+
+/*.send-btn:active:hover {*/
+/*    border-bottom-color: #a2a6ac;*/
+/*}*/
+
+.send-btn:hover {
+    background-position: right center;
+}
+
+/*.send-btn:focus {*/
+/*    border-color: #e77600;*/
+/*    box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;*/
+/*    outline: 0;*/
+/*}*/
+
+body {
+    background: url("https://bogatyr.club/uploads/posts/2023-03/thumbs/1679295592_bogatyr-club-p-krasnii-sploshnoi-fon-foni-krasivo-3.png") no-repeat;
+    background-size: cover;
 }
